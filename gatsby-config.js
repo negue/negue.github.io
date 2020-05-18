@@ -31,6 +31,8 @@ const devToRssQuery = `
         frontmatter {
           title
           date
+          tags
+          series
         }
       }
     }
@@ -200,12 +202,22 @@ module.exports = {
           {
             serialize: ({ query: { site, allMarkdownRemark } }) => {
               return allMarkdownRemark.edges.map(edge => {
+                const tags = edge.node.frontmatter.tags || [];
+                const slug = site.siteMetadata.siteUrl + edge.node.fields.slug;
+
                 return Object.assign({}, edge.node.frontmatter, {
                   description: edge.node.excerpt,
                   date: edge.node.frontmatter.date,
-                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                  custom_elements: [{ "content:encoded": edge.node.rawMarkdownBody }],
+                  url: slug,
+                  guid: slug,
+                  custom_elements: [
+                    { "category": {
+                        _cdata: `[${tags.join(',')}]`
+                      }  },
+                    { "content:encoded": {
+                        _cdata: edge.node.rawMarkdownBody
+                    } }
+                  ],
                 })
               })
             },

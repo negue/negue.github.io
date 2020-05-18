@@ -1,7 +1,7 @@
 ---
 tags: [javascript, graph, gundb, datastructure]
 published: true
-date: 2020-05-25
+date: 2020-05-18
 title: Working with graph structures
 series: Graph-Structures
 devTo: true
@@ -11,12 +11,12 @@ devTo: true
 
 ## What is GunDB/GunJS ?
 
-Its an offline-first, distributed, p2p synced graph-database created by [Mark Nadal][amark]. You can also create accounts (offline) and encrypt data nodes. Enough buzzwords but also true. More infos at the [repo][gunDbLink].
+Its an offline-first, distributed, p2p synced graph-database created by [Mark Nadal][amark]. You can also create accounts (offline) and encrypt data nodes. Enough buzzwords but also true. More info's at the [repo][gunDbLink].
 
 ## Example of working with the API and simple data 
 
 ```js
-var gun = Gun();
+const gun = Gun();
 
 gun.get('node').put({
   someString: "Mark",
@@ -46,7 +46,7 @@ Gun can't really work with lists, due to the syncing between peers is based on p
 Your usual lists look (probably) this:
 
 ```js
-var myList = [ 
+const myList = [ 
   {
     id: 'someId',
     data: 'string'
@@ -66,7 +66,7 @@ If you want to move an item in your list or edit this item, you'd either:
 A better graph-way would be something like this:
 
 ```js
-var state = { 
+const state = { 
   "yourlist": {
     "nodes": {
       "someId": {
@@ -88,28 +88,42 @@ var state = {
 
 At first glance it looks like a lot of unneeded / redundant stuff right?
 
-But with this way, if you want to move an item to new position OR edit the value itself. You only have to change one property in the object/graph.
+But you probably ask yourself, "what If I just set the whole `yourlist`-node, wouldn't that just work?" - Yes, if you just subscribe only to this one node, you don't need any optimization. Then you could just add the order property to node. 
+
+With this type of state:
+- you only have 2 operations when switching a position of two items
+- you only have 1 operation when changing the data of a node
 
 > Note: Less operations, means less data to sync => faster
+
+I choose this structure, because I had encrypted data nodes and when the whole list changed, I had to de-crypt all nodes on each new callback - which is wasted CPU / Page performance. But with that optimized structure, I could handle this much easier, without having to use something like an "object-differ":
+- Subscription: "the order changed" => just move item to different place
+- Subscription: "the data changed" => load the newest update -> decrypt -> show it
+
+Sure, this still is not the "perfect" solution, for example: When you have 100 items, and you want to move Item 44 to 55, you'd have to do 12 operations.
+
+If you want to optimize this even further, you could implement a linked list, with this you could even decrease the number operations, to about 3.
+
+> Note: It all depends on the amount of your data.
 
 But how to get the correct order again?
 
 ```js
-var {nodes, order} = state.yourlist;
+const {nodes, order} = state.yourlist;
 
-var orderedList = Object.values(nodes)
+const orderedList = Object.values(nodes)
       .sort((a, b) => order[a.id] - order[b.id]);
 ```
 
 ## Working with lists in a GunDB-World
 
 ```js
-var gun = Gun();
+const gun = Gun();
 
 // Saving data
-var graphNode = gun.get('your_list');
-var nodes = graphNode.get('nodes');
-var order = graphNode.get('order');
+const graphNode = gun.get('your_list');
+const nodes = graphNode.get('nodes');
+const order = graphNode.get('order');
 
 nodes.get('someId')
       .put({
@@ -131,9 +145,9 @@ order.get('otherId')
 
 // react on changed data (or reading from gun) 
 graphNode.on((listData) => {
-  var {nodes, order} = listData;
+  const {nodes, order} = listData;
   
-  var orderedList = Object.values(nodes)
+  const orderedList = Object.values(nodes)
         .sort((a, b) => order[a.id] - order[b.id]);
 
   // work with the list, send it to your views etc
@@ -141,7 +155,7 @@ graphNode.on((listData) => {
 
 ```
 
-I hope this was an "easy" intro to list-handling, if not please write me on how it could be made better?
+I hope this was an "easy"-ish intro to list-handling with GunDB and or object-only states, if not please write me on how it could be made better?
 
 [amark]: https://github.com/amark
 [gunDbLink]: https://github.com/amark/gun
