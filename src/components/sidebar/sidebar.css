@@ -1,0 +1,15 @@
+
+.profile-img {
+     border-radius: 50%;
+     box-shadow: 1px 1px 3px;
+}
+
+small, h3, p {
+    font-family: 'Raleway';
+    
+}
+
+.author-bio {
+    font-size: 22.5px;
+}
+

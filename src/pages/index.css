@@ -1,0 +1,25 @@
+
+p, .title {
+  font-family: "Raleway";
+}
+
+/*  Landing Page - Avatar Colors like the normal avatar :) */
+
+.avatar-skin-color {
+  fill: #f3973f;
+}
+circle.avatar-skin-color {
+  fill: #f39b49;
+}
+
+.avatar-grid-cell {
+  fill: #65c9fb;
+}
+
+.avatar-hoodie {
+  fill: #5099e4;
+}
+
+.avatar-hair {
+  fill: #4a312d;
+}
