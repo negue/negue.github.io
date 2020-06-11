@@ -1,18 +1,15 @@
 import React from "react"
 
 import negue from "../../images/negue.png"
-import {SiteSiteMetadataContacts} from "../../graphql"
 import styled from "styled-components"
 
 const BioHolder = styled.div`
   display: flex;
   flex-direction: column;
   // width: 170px;
-  margin: 0 auto;
-
   // padding: 1rem;
   // margin: 1rem;
-  margin-left: 0;
+  margin: 0 auto 0 0;
 
   .author-bio {
     // margin-left: 1rem;
@@ -33,30 +30,17 @@ const FirstRow = styled.div`
 `;
 
 const BioMain = styled.div`
-  margin: 0.5rem;
-  margin-right: 1rem;
+  margin: 0.5rem 1rem 0.5rem 0.5rem;
 `;
 
-const BioContacts = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 1.5rem;
-  margin-left: 0.4rem;
-`;
-
-interface BioProps {
-  author: string;
-  contacts: SiteSiteMetadataContacts;
-}
-
-export const Bio = ({ author, contacts }: BioProps) => {
+export const Bio = () => {
   return (
     <BioHolder>
       <FirstRow>
         <BioMain>
           <img
             src={negue}
-            style={{ maxWidth: `100px` }}
+            style={{ maxWidth: `150px` }}
             className="profile-img"
             alt=""
           />

@@ -43,10 +43,8 @@ const InlineContent = styled.div`
   .Typist {
     margin-top: 15px;
     min-height: 150px;
-    
-    ${onMobile`
-      text-align: center;
-    `}
+ 
+    text-align: center;
   }
 
   > * {
@@ -83,9 +81,7 @@ const IndexPage = ({ data }) => {
 
         <br />
         <br />
-        <br />
         <div className="tech-tags" >
-
           <TechTagsOverview/>
         </div>
       </CenteredContent>

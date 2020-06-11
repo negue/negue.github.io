@@ -104,4 +104,11 @@ module.exports.labels = [
     color: "rebeccapurple",
     hoverTextColor: 'white'
   },
+  {
+    tag: "csharp",
+    tech: "DotNet C#",
+    size: 20,
+    color: "#05930c",
+    hoverTextColor: 'white'
+  },
 ];

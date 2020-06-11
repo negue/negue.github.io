@@ -1,8 +1,9 @@
 ---
-tags: [javascript, typescript, node]
+tags: [javascript, typescript, node, senstate]
 published: true
 date: 2019-10-29
 title: 'Senstate - Make sense of your state while debugging'
+series: Senstate - Debug Dashboard
 ---
 
 Having sometimes multiple `console.log`s while trying to find a bug that only happens with a weird state, you kinda get lost scrolling the log up and down. Or adding a bunch of break-points and then stepping into multiple ones. In the past years this happened quite often to me, and last month I thought it needs be easier to debug / see important variables while working on your project.

@@ -123,7 +123,7 @@ export const Layout = ({
               </p>
               <p className="mt-5 text-muted d-inline">
                 <i>
-                  <a className="text-info" href="https://github.com">
+                  <a className="text-info" href="https://github.com/negue/negue.github.io">
                     Edit on GitHub
                   </a>
                 </i>{" "}
