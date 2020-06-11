@@ -95,7 +95,8 @@
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
     "codegen": "graphql-codegen --config graphql-codegen.yml",
-    "graphql-codegen": "graphql-codegen"
+    "graphql-codegen": "graphql-codegen",
+    "markdown:lint": "npx markdownlint-cli@0.19 -c tools/configs/markdownlint.yml **/*.md -i node_modules -i dist"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
