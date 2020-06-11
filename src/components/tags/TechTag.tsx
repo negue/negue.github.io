@@ -6,7 +6,7 @@ import styled from "styled-components"
 const TechTagButton = styled.button`
   transition: filter 0.7s ease-out;
   transform: translate3d(0, 0, 0);
-  background: #222;
+  background: #777;
   border: 0;
   font-size: .85rem;
   display: flex;
@@ -56,7 +56,7 @@ const TechTag = (props) => {
   // Change colors on hover :>
   const buttonStyle = 
     {
-      '--hover-background': '#222',
+      '--hover-background': '#333',
       '--svg-color': color,
       '--svg-hover-color': color,
       '--hover-border-color': color,

@@ -160,7 +160,11 @@ const LinksCell = styled.div`
 
 const SecondaryPanel = () => (
   <SecondaryPanelGrid>
-    <ImageCell>{Image}</ImageCell>
+    <ImageCell>
+      <Link to="/">
+        {Image}
+      </Link>
+    </ImageCell>
     <NameCell header={false}>
       <h3 className="author-bio">
         <span>{`<negue />`}</span>

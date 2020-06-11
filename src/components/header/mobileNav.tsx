@@ -46,11 +46,11 @@ export const IconWrapper = styled.div<IconWrapperProps>`
   height: 22px;
   
   ${(p) =>
-    p.rotate &&
+    p.rotate ?
     css`
       transform-origin: 50% 55%;
       transform: rotate(180deg);
-    `}
+    ` : undefined}
 `;
 
 const SecondaryMenuItem = styled.div`
