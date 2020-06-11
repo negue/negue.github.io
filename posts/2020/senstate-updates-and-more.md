@@ -16,13 +16,21 @@ Finally after some months I worked a bit on Senstate again. I had some features 
 
 New features:
 - Group Watchers
+
+  ![group_feature](https://user-images.githubusercontent.com/842273/84432637-610d7880-ac2d-11ea-8cd1-cefa4177b9c8.PNG)
+
 - List Watchers (instead of a masonry-grid, still need some more stying, ideas? thoughts?)
 - You can add "difference"-View to see the change of the previous value
+
+  ![example of the difference feature](https://user-images.githubusercontent.com/842273/84432324-f65c3d00-ac2c-11ea-9dc6-f84a4328e5d3.png)
+
 - Errors can be searched on multiple sites, opens a new tab:
   - DuckDuckGo
   - Github
   - Google
   - StackOverflow
+  
+Also see [CHANGELOG.md](https://github.com/senstate/platform/blob/master/CHANGELOG.md)
 
 # :construction: Whats next?
 
